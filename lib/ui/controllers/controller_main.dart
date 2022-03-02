@@ -57,6 +57,10 @@ class ControllerMain extends GetxController {
     }
   }
 
+  bool isBookInBasket(Book book) {
+    return booksInBasket.contains(book);
+  }
+
   void gotoBasket() {
     Get.toNamed(AppRoutes.screenBasket);
   }

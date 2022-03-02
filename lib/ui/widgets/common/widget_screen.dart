@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:henri_potier/ui/widgets/business/widget_basket_icon.dart';
 import 'package:henri_potier/ui/widgets/common/widget_text.dart';
 
 class WidgetScreen extends StatelessWidget {
@@ -25,7 +26,13 @@ class WidgetScreen extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back),
               )
             : null,
-        title: WidgetText(title, color: Colors.white),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            WidgetText(title, color: Colors.white),
+            WidgetBasketIcon(),
+          ],
+        ),
       ),
       body: SizedBox(
         width: double.infinity,

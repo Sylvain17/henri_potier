@@ -8,9 +8,10 @@ import 'package:henri_potier/utils/app_theme.dart';
 
 class WidgetBookDetails extends StatelessWidget {
   final Book book;
+  final String buttonText;
   final VoidCallback? onPressed;
 
-  const WidgetBookDetails(this.book, {this.onPressed, Key? key}) : super(key: key);
+  const WidgetBookDetails(this.book, {required this.buttonText, required this.onPressed, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class WidgetBookDetails extends StatelessWidget {
           WidgetPrice(book.price),
           WidgetSpace(),
           WidgetButton(
-            'Ajouter au panier',
+            buttonText,
             showMargins: false,
             onPressed: onPressed,
           ),
