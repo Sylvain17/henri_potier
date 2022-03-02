@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:henri_potier/utils/app_theme.dart';
 import 'package:henri_potier/utils/log.dart';
 
 class WidgetTextField extends StatefulWidget {
@@ -35,17 +36,31 @@ class WidgetTextFieldState extends State<WidgetTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      focusNode: focusNode,
-      initialValue: widget.initialValue,
-      keyboardType: TextInputType.multiline,
-      maxLines: null,
-      onChanged: (newText) => onTextChanged(newText),
-      decoration: InputDecoration(
-        border: InputBorder.none,
-        hintText: widget.hintText,
+    return Container(
+      color: AppTheme.colorPrimary,
+      padding: EdgeInsets.all(AppTheme.margin16),
+      child: Container(
+        padding: EdgeInsets.only(
+          left: AppTheme.margin16,
+          right: AppTheme.margin16,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppTheme.borderRadius),
+          color: AppTheme.colorPrimary.shade100,
+        ),
+        child: TextFormField(
+          focusNode: focusNode,
+          initialValue: widget.initialValue,
+          keyboardType: TextInputType.multiline,
+          maxLines: null,
+          onChanged: (newText) => onTextChanged(newText),
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: widget.hintText,
+          ),
+          style: TextStyle(fontSize: widget.fontSize),
+        ),
       ),
-      style: TextStyle(fontSize: widget.fontSize),
     );
   }
 

@@ -7,6 +7,7 @@ import 'package:henri_potier/ui/screens/library/controller/controller_library.da
 import 'package:henri_potier/ui/widgets/business/widget_book_cover.dart';
 import 'package:henri_potier/ui/widgets/common/widget_screen.dart';
 import 'package:henri_potier/ui/widgets/common/widget_text.dart';
+import 'package:henri_potier/ui/widgets/common/widget_text_field.dart';
 import 'package:henri_potier/utils/app_theme.dart';
 
 class ScreenBookList extends StatelessWidget {
@@ -17,7 +18,7 @@ class ScreenBookList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => WidgetScreen(
-        title: 'Book list',
+        title: 'Liste de livres',
         canGoBack: false,
         children: [
           controllerMain.areBooksLoaded.isFalse
@@ -25,26 +26,40 @@ class ScreenBookList extends StatelessWidget {
                   color: AppTheme.colorPrimary,
                   size: 30,
                 )
-              : controllerMain.books.isEmpty
-                  ? const WidgetText('Pas de livre')
-                  : Expanded(
-                      child: SingleChildScrollView(
-                        padding: const EdgeInsets.all(AppTheme.margin16),
-                        child: StaggeredGrid.count(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: AppTheme.margin16,
-                          crossAxisSpacing: AppTheme.margin16,
-                          children: controllerMain.books
-                              .map(
-                                (book) => GestureDetector(
-                                  onTap: () => controller.onBookCoverClicked(book),
-                                  child: WidgetBookCover(book),
-                                ),
-                              )
-                              .toList(),
-                        ),
+              : Expanded(
+                  child: Column(
+                    children: [
+                      WidgetTextField(
+                        hintText: "Rechercher",
+                        onTextChanged: controllerMain.onSearchTextChanged,
                       ),
-                    )
+                      controllerMain.books.isEmpty
+                          ? Expanded(
+                              child: Center(
+                                child: const WidgetText('Pas de livre'),
+                              ),
+                            )
+                          : Expanded(
+                              child: SingleChildScrollView(
+                                padding: const EdgeInsets.all(AppTheme.margin16),
+                                child: StaggeredGrid.count(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: AppTheme.margin16,
+                                  crossAxisSpacing: AppTheme.margin16,
+                                  children: controllerMain.books
+                                      .map(
+                                        (book) => GestureDetector(
+                                          onTap: () => controller.onBookCoverClicked(book),
+                                          child: WidgetBookCover(book),
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
+                              ),
+                            ),
+                    ],
+                  ),
+                )
         ],
       ),
     );

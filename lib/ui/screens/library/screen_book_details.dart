@@ -13,7 +13,7 @@ class ScreenBookDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => WidgetScreen(
-        title: 'Book details',
+        title: 'Détails',
         children: [
           Expanded(child: WidgetBookDetails(controller.selectedBook.value)),
         ],

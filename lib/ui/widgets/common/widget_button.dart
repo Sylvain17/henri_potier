@@ -26,7 +26,7 @@ class WidgetButton extends StatelessWidget {
           decoration: const BoxDecoration(
             color: AppTheme.colorPrimary,
             borderRadius: BorderRadius.all(
-              Radius.circular(8),
+              Radius.circular(AppTheme.borderRadius),
             ),
           ),
           child: Center(
