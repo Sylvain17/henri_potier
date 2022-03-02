@@ -10,6 +10,6 @@ class ControllerSplash extends GetxController {
   }
 
   gotoScreenHome() {
-    Get.toNamed(AppRoutes.screenHome);
+    Get.offNamed(AppRoutes.screenLibraryBookList);
   }
 }

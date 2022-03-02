@@ -30,6 +30,8 @@ dependencies:
   flutter_keyboard_visibility: ^5.2.0
   #https://pub.dev/packages/flutter_spinkit/changelog
   flutter_spinkit: ^5.1.0
+  #https://pub.dev/packages/flutter_staggered_grid_view/changelog
+  flutter_staggered_grid_view: ^0.6.1
   #https://pub.dev/packages/get/changelog
   get: ^4.6.1
   #https://pub.dev/packages/http/changelog

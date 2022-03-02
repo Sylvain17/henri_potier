@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
 import 'package:henri_potier/ui/screens/basket/screen_basket.dart';
-import 'package:henri_potier/ui/screens/home/screen_home.dart';
+import 'package:henri_potier/ui/screens/library/screen_book_details.dart';
+import 'package:henri_potier/ui/screens/library/screen_book_list.dart';
 import 'package:henri_potier/ui/screens/splash/screen_splash.dart';
 
 class AppRoutes {
   static const String screenSplash = "/splash";
-  static const String screenHome = "/home";
+  static const String screenLibraryBookList = "/library/book_list";
+  static const String screenLibraryBookDetails = "/library/book_details";
   static const String screenBasket = "/basket";
 
   // Note about Bindings
@@ -22,8 +24,13 @@ class AppRoutes {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: screenHome,
-      page: () => ScreenHome(),
+      name: screenLibraryBookList,
+      page: () => ScreenBookList(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: screenLibraryBookDetails,
+      page: () => ScreenBookDetails(),
       transition: Transition.noTransition,
     ),
     GetPage(

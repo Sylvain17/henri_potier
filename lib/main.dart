@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:henri_potier/utils/app_routes.dart';
+import 'package:henri_potier/utils/app_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         title: "Henri Potier",
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: AppTheme.colorPrimary,
         ),
         initialRoute: AppRoutes.screenSplash,
         getPages: AppRoutes.screens,
