@@ -4,14 +4,21 @@ import 'package:henri_potier/utils/app_theme.dart';
 
 class WidgetPrice extends StatelessWidget {
   final int price;
+  final Color color;
+  final double? fontSize;
 
-  const WidgetPrice(this.price, {Key? key}) : super(key: key);
+  const WidgetPrice(
+    this.price, {
+    this.color = AppTheme.colorPrimary,
+    this.fontSize = 30,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return WidgetText(
       "$price€",
-      style: AppTheme.stylePrice,
+      style: AppTheme.stylePrice.copyWith(color: color, fontSize: fontSize),
     );
   }
 }

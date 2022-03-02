@@ -1,11 +1,15 @@
 import 'package:get/get.dart';
 import 'package:henri_potier/models/book.dart';
+import 'package:henri_potier/models/commercial_offers.dart';
 import 'package:henri_potier/services/book_service.dart';
+import 'package:henri_potier/utils/app_routes.dart';
 
 class ControllerMain extends GetxController {
   RxBool areBooksLoaded = false.obs;
   RxList<Book> booksAll = <Book>[].obs;
-  RxList<Book> books = <Book>[].obs;
+  RxList<Book> booksDisplayed = <Book>[].obs;
+  RxList<Book> booksInBasket = <Book>[].obs;
+  Rx<CommercialOffers> commercialOffers = CommercialOffers.empty().obs;
 
   @override
   void onInit() {
@@ -16,12 +20,12 @@ class ControllerMain extends GetxController {
 
   void retrieveBooks() {
     areBooksLoaded.value = false;
-    books.clear();
+    booksDisplayed.clear();
     booksAll.clear();
     BookService().getBooks().then((bookList) {
       areBooksLoaded.value = true;
-      books.clear();
-      books.addAll(bookList);
+      booksDisplayed.clear();
+      booksDisplayed.addAll(bookList);
       booksAll.clear();
       booksAll.addAll(bookList);
     });
@@ -34,7 +38,26 @@ class ControllerMain extends GetxController {
         booksNewList.add(book);
       }
     }
-    books.clear();
-    books.addAll(booksNewList);
+    booksDisplayed.clear();
+    booksDisplayed.addAll(booksNewList);
+  }
+
+  void addBookToBasket(Book book) async {
+    gotoBasket();
+    if (!booksInBasket.contains(book)) {
+      booksInBasket.add(book);
+      commercialOffers.value = await BookService().getCommercialOffers(booksInBasket);
+    }
+  }
+
+  void removeBookFromBasket(Book book) async {
+    if (booksInBasket.contains(book)) {
+      booksInBasket.remove(book);
+      commercialOffers.value = await BookService().getCommercialOffers(booksInBasket);
+    }
+  }
+
+  void gotoBasket() {
+    Get.toNamed(AppRoutes.screenBasket);
   }
 }

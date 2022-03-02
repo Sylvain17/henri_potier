@@ -33,7 +33,7 @@ class ScreenBookList extends StatelessWidget {
                         hintText: "Rechercher",
                         onTextChanged: controllerMain.onSearchTextChanged,
                       ),
-                      controllerMain.books.isEmpty
+                      controllerMain.booksDisplayed.isEmpty
                           ? Expanded(
                               child: Center(
                                 child: const WidgetText('Pas de livre'),
@@ -46,7 +46,7 @@ class ScreenBookList extends StatelessWidget {
                                   crossAxisCount: 2,
                                   mainAxisSpacing: AppTheme.margin16,
                                   crossAxisSpacing: AppTheme.margin16,
-                                  children: controllerMain.books
+                                  children: controllerMain.booksDisplayed
                                       .map(
                                         (book) => GestureDetector(
                                           onTap: () => controller.onBookCoverClicked(book),

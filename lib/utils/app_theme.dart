@@ -17,6 +17,14 @@ class AppTheme {
     );
   }
 
+  static TextStyle get styleTitleInBasket {
+    return const TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 20,
+      color: Colors.black,
+    );
+  }
+
   static TextStyle get styleSynopsis {
     return const TextStyle(
       fontSize: 20,

@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:henri_potier/models/book.dart';
+import 'package:henri_potier/models/commercial_offers.dart';
+import 'package:henri_potier/utils/log.dart';
 import 'package:http/http.dart';
 
 class BookService {
@@ -15,6 +17,31 @@ class BookService {
       return books;
     } else {
       throw "Unable to retrieve books.";
+    }
+  }
+
+  Future<CommercialOffers> getCommercialOffers(List<Book> books) async {
+    if (books.isEmpty) {
+      return CommercialOffers.empty();
+    }
+
+    String isbnList = "";
+    for (Book book in books) {
+      if (isbnList.isNotEmpty) {
+        isbnList += ",";
+      }
+      isbnList += book.isbn;
+    }
+    log(isbnList);
+    String path = "$postsURL/$isbnList/commercialOffers";
+    Response res = await get(Uri.parse(path));
+
+    if (res.statusCode == 200) {
+      CommercialOffers commercialOffers = CommercialOffers.fromJson(jsonDecode(res.body));
+      commercialOffers.books = books;
+      return commercialOffers;
+    } else {
+      throw "Unable to retrieve commercialOffers.";
     }
   }
 }

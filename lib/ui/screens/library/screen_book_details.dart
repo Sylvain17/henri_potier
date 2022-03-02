@@ -15,7 +15,12 @@ class ScreenBookDetails extends StatelessWidget {
       () => WidgetScreen(
         title: 'Détails',
         children: [
-          Expanded(child: WidgetBookDetails(controller.selectedBook.value)),
+          Expanded(
+            child: WidgetBookDetails(
+              controller.selectedBook.value,
+              onPressed: () => controllerMain.addBookToBasket(controller.selectedBook.value),
+            ),
+          ),
         ],
       ),
     );
