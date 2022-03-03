@@ -22,14 +22,20 @@ class Offer {
   }
 
   int getFinalPrice(int totalPrice) {
+    int finalPrice;
     if (type == EnumOfferType.minus) {
-      return totalPrice - value;
+      finalPrice = totalPrice - value;
     } else if (type == EnumOfferType.percentage) {
-      return totalPrice - (totalPrice * value) ~/ 100;
+      finalPrice = totalPrice - (totalPrice * value) ~/ 100;
     } else if (type == EnumOfferType.slice) {
-      return totalPrice - ((totalPrice / sliceValue).floor() * value);
+      finalPrice = totalPrice - ((totalPrice / sliceValue).floor() * value);
     } else {
-      return totalPrice;
+      finalPrice = totalPrice;
     }
+    if (finalPrice < 0) {
+      // No hacking please ;-)
+      finalPrice = totalPrice;
+    }
+    return finalPrice;
   }
 }
