@@ -2,15 +2,8 @@
 
 A new Flutter project for recruiters. Be aware that it can be tied to magic spell casting
 
-## Getting Started
+## En quoi consiste ce projet
 
-This project is a starting point for a Flutter application.
+Ce projet est un exercice pour tester les compétences d'un langage front:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Enoncé de l'exercice](https://github.com/xebia-france/recruitment-tests/blob/master/ExerciceFront.md)
