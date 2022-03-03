@@ -40,5 +40,5 @@ class AppTheme {
     );
   }
 
-  // endregion
+// endregion
 }

@@ -11,7 +11,12 @@ class WidgetBookDetails extends StatelessWidget {
   final String buttonText;
   final VoidCallback? onPressed;
 
-  const WidgetBookDetails(this.book, {required this.buttonText, required this.onPressed, Key? key}) : super(key: key);
+  const WidgetBookDetails(
+    this.book, {
+    required this.buttonText,
+    required this.onPressed,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -25,7 +25,7 @@ class Offer {
     if (type == EnumOfferType.minus) {
       return totalPrice - value;
     } else if (type == EnumOfferType.percentage) {
-      return totalPrice - (totalPrice * value).toInt();
+      return totalPrice - (totalPrice * value) ~/ 100;
     } else if (type == EnumOfferType.slice) {
       return totalPrice - ((totalPrice / sliceValue).floor() * value);
     } else {

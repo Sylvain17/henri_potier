@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:henri_potier/models/book.dart';
 import 'package:henri_potier/models/offer.dart';
+import 'package:henri_potier/utils/log.dart';
 
 class CommercialOffers {
   final List<Offer> offers;
@@ -33,6 +35,7 @@ class CommercialOffers {
     int minimalPrice = booksPrice;
     for (Offer offer in offers) {
       int offerFinalPrice = offer.getFinalPrice(booksPrice);
+      log("booksPrice:$booksPrice type:${describeEnum(offer.type)} value:${offer.value} sliceValue:${offer.sliceValue} = $offerFinalPrice");
       if (offerFinalPrice < minimalPrice) {
         minimalPrice = offerFinalPrice;
       }

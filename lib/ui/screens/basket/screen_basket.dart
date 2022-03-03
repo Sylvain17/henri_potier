@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:henri_potier/ui/controllers/controller_main.dart';
+import 'package:henri_potier/ui/screens/basket/controller/controller_basket.dart';
 import 'package:henri_potier/ui/widgets/business/widget_book_basket.dart';
 import 'package:henri_potier/ui/widgets/business/widget_price.dart';
 import 'package:henri_potier/ui/widgets/common/widget_screen.dart';
@@ -9,16 +9,14 @@ import 'package:henri_potier/ui/widgets/common/widget_space.dart';
 import 'package:henri_potier/ui/widgets/common/widget_text.dart';
 import 'package:henri_potier/utils/app_theme.dart';
 
-class ScreenBasket extends GetView<ControllerMain> {
-  final controllerMain = Get.find<ControllerMain>();
-
+class ScreenBasket extends GetView<ControllerBasket> {
   @override
   Widget build(BuildContext context) {
     return Obx(
       () => WidgetScreen(
         title: 'Panier',
         children: [
-          controllerMain.booksInBasket.isEmpty
+          controller.booksInBasket.isEmpty
               ? Expanded(
                   child: Center(
                     child: const WidgetText('Panier vide'),
@@ -34,11 +32,11 @@ class ScreenBasket extends GetView<ControllerMain> {
                             crossAxisCount: 1,
                             mainAxisSpacing: AppTheme.margin16,
                             crossAxisSpacing: AppTheme.margin16,
-                            children: controllerMain.booksInBasket
+                            children: controller.booksInBasket
                                 .map(
                                   (book) => WidgetBookBasket(
                                     book,
-                                    onPressed: () => controllerMain.removeBookFromBasket(book),
+                                    onPressed: () => controller.removeBookFromBasket(book),
                                   ),
                                 )
                                 .toList(),
@@ -58,7 +56,7 @@ class ScreenBasket extends GetView<ControllerMain> {
                                 WidgetText("avant réduction", color: Colors.white),
                                 WidgetSpace(),
                                 WidgetPrice(
-                                  controllerMain.commercialOffers.value.getBooksPrice(),
+                                  controller.commercialOffers.value.getBooksPrice(),
                                   color: Colors.white,
                                   fontSize: 20,
                                 ),
@@ -70,7 +68,7 @@ class ScreenBasket extends GetView<ControllerMain> {
                                 WidgetText("prix final", color: Colors.white),
                                 WidgetSpace(),
                                 WidgetPrice(
-                                  controllerMain.commercialOffers.value.getFinalPrice(),
+                                  controller.commercialOffers.value.getFinalPrice(),
                                   color: Colors.white,
                                 ),
                               ],

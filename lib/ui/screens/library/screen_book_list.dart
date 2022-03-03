@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:henri_potier/ui/controllers/controller_main.dart';
 import 'package:henri_potier/ui/screens/library/controller/controller_library.dart';
 import 'package:henri_potier/ui/widgets/business/widget_book_cover.dart';
 import 'package:henri_potier/ui/widgets/common/widget_screen.dart';
@@ -12,7 +11,6 @@ import 'package:henri_potier/utils/app_theme.dart';
 
 class ScreenBookList extends StatelessWidget {
   final controller = Get.put(ControllerLibrary());
-  final controllerMain = Get.find<ControllerMain>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class ScreenBookList extends StatelessWidget {
         title: 'Liste de livres',
         canGoBack: false,
         children: [
-          controllerMain.areBooksLoaded.isFalse
+          controller.areBooksLoaded.isFalse
               ? const SpinKitThreeBounce(
                   color: AppTheme.colorPrimary,
                   size: 30,
@@ -31,9 +29,9 @@ class ScreenBookList extends StatelessWidget {
                     children: [
                       WidgetTextField(
                         hintText: "Rechercher",
-                        onTextChanged: controllerMain.onSearchTextChanged,
+                        onTextChanged: controller.onSearchTextChanged,
                       ),
-                      controllerMain.booksDisplayed.isEmpty
+                      controller.booksDisplayed.isEmpty
                           ? Expanded(
                               child: Center(
                                 child: const WidgetText('Pas de livre'),
@@ -46,7 +44,7 @@ class ScreenBookList extends StatelessWidget {
                                   crossAxisCount: 2,
                                   mainAxisSpacing: AppTheme.margin16,
                                   crossAxisSpacing: AppTheme.margin16,
-                                  children: controllerMain.booksDisplayed
+                                  children: controller.booksDisplayed
                                       .map(
                                         (book) => GestureDetector(
                                           onTap: () => controller.onBookCoverClicked(book),

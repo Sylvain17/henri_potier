@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:henri_potier/ui/controllers/controller_main.dart';
+import 'package:henri_potier/ui/screens/basket/controller/controller_basket.dart';
 import 'package:henri_potier/ui/widgets/common/widget_text.dart';
 import 'package:henri_potier/utils/app_routes.dart';
 import 'package:henri_potier/utils/app_theme.dart';
 
 class WidgetBasketIcon extends StatelessWidget {
-  final controllerMain = Get.find<ControllerMain>();
+  final controllerBasket = Get.find<ControllerBasket>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class WidgetBasketIcon extends StatelessWidget {
         },
         child: Row(
           children: [
-            controllerMain.booksInBasket.isEmpty ? Container() : WidgetText(controllerMain.booksInBasket.length.toString(), color: Colors.white),
+            controllerBasket.booksInBasket.isEmpty ? Container() : WidgetText(controllerBasket.booksInBasket.length.toString(), color: Colors.white),
             Container(
               color: AppTheme.colorPrimary,
               width: 24,

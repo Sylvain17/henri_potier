@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:henri_potier/models/book.dart';
-import 'package:henri_potier/ui/controllers/controller_main.dart';
+import 'package:henri_potier/ui/screens/basket/controller/controller_basket.dart';
 import 'package:henri_potier/utils/app_theme.dart';
 
 class WidgetBookCover extends StatelessWidget {
-  final controllerMain = Get.find<ControllerMain>();
+  final controllerBasket = Get.find<ControllerBasket>();
 
   final Book book;
 
@@ -20,7 +20,7 @@ class WidgetBookCover extends StatelessWidget {
           bottom: 8,
           right: 8,
           child: Obx(
-            () => controllerMain.isBookInBasket(book)
+            () => controllerBasket.isBookInBasket(book)
                 ? Container(
                     decoration: BoxDecoration(color: AppTheme.colorPrimary, shape: BoxShape.circle),
                     padding: EdgeInsets.all(12),
