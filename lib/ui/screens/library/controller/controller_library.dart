@@ -5,6 +5,7 @@ import 'package:henri_potier/utils/app_routes.dart';
 
 class ControllerLibrary extends GetxController {
   RxBool areBooksLoaded = false.obs;
+  RxBool hasBooksLoadingException = false.obs;
   RxList<Book> booksAll = <Book>[].obs;
   RxList<Book> booksDisplayed = <Book>[].obs;
   Rx<Book> selectedBook = Book.empty().obs;
@@ -16,17 +17,22 @@ class ControllerLibrary extends GetxController {
     retrieveBooks();
   }
 
-  void retrieveBooks() {
+  void retrieveBooks() async {
     areBooksLoaded.value = false;
+    hasBooksLoadingException.value = false;
     booksDisplayed.clear();
     booksAll.clear();
-    BookService().getBooks().then((bookList) {
-      areBooksLoaded.value = true;
+    await Future.delayed(Duration(seconds: 1));
+    try {
+      List<Book> bookList = await BookService().getBooks();
       booksDisplayed.clear();
       booksDisplayed.addAll(bookList);
       booksAll.clear();
       booksAll.addAll(bookList);
-    });
+      areBooksLoaded.value = true;
+    } catch (exception) {
+      hasBooksLoadingException.value = true;
+    }
   }
 
   void gotoScreenBasket() {

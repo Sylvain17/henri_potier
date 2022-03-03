@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:henri_potier/ui/screens/basket/controller/controller_basket.dart';
 import 'package:henri_potier/ui/widgets/business/widget_book_basket.dart';
 import 'package:henri_potier/ui/widgets/business/widget_price.dart';
+import 'package:henri_potier/ui/widgets/common/widget_button.dart';
 import 'package:henri_potier/ui/widgets/common/widget_screen.dart';
 import 'package:henri_potier/ui/widgets/common/widget_space.dart';
 import 'package:henri_potier/ui/widgets/common/widget_text.dart';
@@ -47,34 +49,51 @@ class ScreenBasket extends GetView<ControllerBasket> {
                         height: 120,
                         width: double.infinity,
                         color: AppTheme.colorPrimary,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                WidgetText("avant réduction", color: Colors.white),
-                                WidgetSpace(),
-                                WidgetPrice(
-                                  controller.commercialOffers.value.getBooksPrice(),
-                                  color: Colors.white,
-                                  fontSize: 20,
+                        child: controller.hasCommercialOffersException.isTrue
+                            ? Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: AppTheme.margin16, right: AppTheme.margin16),
+                                  child: WidgetButton(
+                                    "Erreur de connexion : Réessayer",
+                                    onPressed: controller.retrieveCommercialOffers,
+                                    showInversedColors: true,
+                                    showMargins: false,
+                                  ),
                                 ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                WidgetText("prix final", color: Colors.white),
-                                WidgetSpace(),
-                                WidgetPrice(
-                                  controller.commercialOffers.value.getFinalPrice(),
-                                  color: Colors.white,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              )
+                            : controller.areCommercialOffersLoaded.isFalse
+                                ? const SpinKitThreeBounce(
+                                    color: Colors.white,
+                                    size: 30,
+                                  )
+                                : Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          WidgetText("avant réduction", color: Colors.white),
+                                          WidgetSpace(),
+                                          WidgetPrice(
+                                            controller.commercialOffers.value.getBooksPrice(),
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          WidgetText("prix final", color: Colors.white),
+                                          WidgetSpace(),
+                                          WidgetPrice(
+                                            controller.commercialOffers.value.getFinalPrice(),
+                                            color: Colors.white,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                       )
                     ],
                   ),

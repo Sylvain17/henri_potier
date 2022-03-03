@@ -6,8 +6,15 @@ class WidgetButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
   final bool showMargins;
+  final bool showInversedColors;
 
-  const WidgetButton(this.text, {this.onPressed, this.showMargins = true, Key? key}) : super(key: key);
+  const WidgetButton(
+    this.text, {
+    this.onPressed,
+    this.showMargins = true,
+    this.showInversedColors = false,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +30,8 @@ class WidgetButton extends StatelessWidget {
         onTap: onPressed,
         child: Container(
           height: 48,
-          decoration: const BoxDecoration(
-            color: AppTheme.colorPrimary,
+          decoration: BoxDecoration(
+            color: showInversedColors ? Colors.white : AppTheme.colorPrimary,
             borderRadius: BorderRadius.all(
               Radius.circular(AppTheme.borderRadius),
             ),
@@ -32,7 +39,7 @@ class WidgetButton extends StatelessWidget {
           child: Center(
             child: WidgetText(
               text,
-              color: Colors.white,
+              color: showInversedColors ? AppTheme.colorPrimary : Colors.white,
             ),
           ),
         ),
